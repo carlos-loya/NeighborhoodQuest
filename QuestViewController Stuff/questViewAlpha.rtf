@@ -49,6 +49,8 @@
         \cf8 getNewQuestion\cf0 ()\
         \cf7 timer\cf0  = \cf4 NSTimer\cf0 .\cf9 scheduledTimerWithTimeInterval\cf0 (\cf7 timeBase\cf0 , target: \cf3 self\cf0 , selector:\cf5 "outOfTime"\cf0 , userInfo: \cf3 nil\cf0 , repeats: \cf3 false\cf0 )\
         \cf7 timer2\cf0  = \cf4 NSTimer\cf0 .\cf9 scheduledTimerWithTimeInterval\cf0 (\cf6 1.0\cf0 , target: \cf3 self\cf0 , selector:\cf5 "updateTime"\cf0 , userInfo: \cf3 nil\cf0 , repeats: \cf3 true\cf0 )\
+        \cf3 let\cf0  range = \cf9 NSMakeRange\cf0 (\cf7 questTextView\cf0 .\cf4 text\cf0 .\cf4 characters\cf0 .\cf4 count\cf0  - \cf6 1\cf0 , \cf6 0\cf0 )\
+        \cf7 questTextView\cf0 .\cf9 scrollRangeToVisible\cf0 (range)\
     \}\
     \
     \
@@ -69,6 +71,8 @@
 \cf0     \cf3 func\cf0  outOfTime() \{\
         \cf3 if\cf0  !\cf7 isCorrect\cf0  \{\
             \cf7 questTextView\cf0 .\cf4 text\cf0  = \cf5 "Out of time! Question failed!!"\cf0 \
+            \cf3 let\cf0  range = \cf9 NSMakeRange\cf0 (\cf7 questTextView\cf0 .\cf4 text\cf0 .\cf4 characters\cf0 .\cf4 count\cf0  - \cf6 1\cf0 , \cf6 0\cf0 )\
+            \cf7 questTextView\cf0 .\cf9 scrollRangeToVisible\cf0 (range)\
             \cf7 isFailed\cf0  = \cf3 true\cf0 \
         \}\
     \}\
@@ -151,6 +155,8 @@
             \cf7 isFailed\cf0  = \cf3 true\cf0 \
             \cf7 questTextView\cf0 .\cf4 text\cf0  = \cf7 questTextView\cf0 .\cf4 text\cf0  + \cf5 "\\nIncorrect!"\cf0 \
         \}\
+        \cf3 let\cf0  range = \cf9 NSMakeRange\cf0 (\cf7 questTextView\cf0 .\cf4 text\cf0 .\cf4 characters\cf0 .\cf4 count\cf0  - \cf6 1\cf0 , \cf6 0\cf0 )\
+        \cf7 questTextView\cf0 .\cf9 scrollRangeToVisible\cf0 (range)\
     \}\
     \
     \
@@ -200,17 +206,13 @@
     \cf3 @IBAction\cf0  \cf3 func\cf0  selectedChoiceC(sender: \cf4 AnyObject\cf0 ) \{\
         \cf8 checkAnswer\cf0 (\cf6 2\cf0 )\
     \}\
-    \cf3 override\cf0  \cf3 func\cf0  viewDidLoad() \{\
-        \cf3 super\cf0 .\cf9 viewDidLoad\cf0 ()\
+    \
+    \
+    \cf3 func\cf0  success() \{\
+        \cf2 //Here is where core data comes in to level up the player and/or give them items\
+\cf0         \
         \
     \}\
     \
-    \cf3 override\cf0  \cf3 func\cf0  didReceiveMemoryWarning() \{\
-        \cf3 super\cf0 .\cf9 didReceiveMemoryWarning\cf0 ()\
-    \}\
     \
-    \
-    \
-    \
-\}\
-}
+    }
